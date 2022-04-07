@@ -6,15 +6,43 @@
 另外由于时间仓促，一些容错逻辑较为粗糙，结账商品数据未完整分析，可能存在部分类型商品无法结账的情况(如有发现可提issue)，后续有时间的话可能会继续完善。
 
 ## 使用方式
-在main.go的main函数中修改该行代码
-```
-err := session.InitSession("DDXQSESSID=xxxxxxxxxxx", "xxxxxxxxxxxxx")
-```
-其中第一个参数为叮咚登录cookie，需要抓包获取，形式为```"DDXQSESSID=xxxxxxxxxxx""```
 
-第二个参数为通知用的bark id，下载bark后从app界面获取
+1.配置 DDXQSESSID
+
+电脑浏览器从此地址登录后即可从 Cookie 取得 DDXQSESSID
+
+> https://activity.m.ddxq.mobi/#/coupon?code=VERxg&h5_source=caocao&btnType=jumpApp&path=https://u.100.me/m/maicai&random=4
+
+然后配置环境变量
+
+```shell
+export DDXQSESSID=xxxxxxx
+```
+
+2.配置推送密钥
+
+a.使用 Bark 推送
+
+下载 Bark 后从 App 界面获取 ID 配置到环境变量
+
+```shell
+export BARKID=xxxxxxx
+```
 
 <img src="./assets/bark.jpg" width="300">
+
+b.使用微信公众号测试号推送
+
+访问 https://mp.weixin.qq.com/debug/cgi-bin/sandbox?t=sandbox/login 微信扫一扫开通并关注测试号
+
+将获取到 App ID 和 App Secret 配置到环境变量
+
+```shell
+export WECHATAPPID=xxxxxxx
+export WECHATAPPSECRET=xxxxxxx
+```
+
+<img src="./assets/wechat.png" width="300">
 
 开始运行后按命令行提示操作即可。
 
