@@ -64,7 +64,6 @@ func (s *DingdongSession) GetAddress() (error, []Address) {
 	req.Header.Set("sec-fetch-mode", "cors")
 	req.Header.Set("sec-fetch-dest", "empty")
 	req.Header.Set("referer", "https://wx.m.ddxq.mobi/")
-	req.Header.Set("accept-encoding", "gzip, deflate")
 	req.Header.Set("accept-language", "zh-CN,zh;q=0.9,en-US;q=0.8,en;q=0.7")
 	req.Header.Set("cookie", s.Cookie)
 
