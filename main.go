@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"math/rand"
 	"robFoodDD/dd"
 	"time"
 )
@@ -54,8 +55,9 @@ cartLoop:
 				continue
 			}
 			if len(multiReserveTime) == 0 {
-				fmt.Println("暂无可预约时间，5秒后重试！")
-				time.Sleep(5 * time.Second)
+				sleepInterval := 3 + rand.Intn(6)
+				fmt.Printf("暂无可预约时间，%v秒后重试！\n", sleepInterval)
+				time.Sleep(time.Duration(sleepInterval) * time.Second)
 				continue
 			} else {
 				fmt.Println("发现可用的配送时段!")
