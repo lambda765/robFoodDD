@@ -1,0 +1,7 @@
+users:
+  - userName: xxx
+    cookie: xxx
+    barkId: xxx
+    addressNum: 1
+    payMethodNum: 2 # 请输入支付方式序号（1：支付宝 2：微信)
+    settlementMode: 1 # 请输入结算模式序号（1：结算所有有效商品（不包括换购） 2：结算所有勾选商品（包括换购)
