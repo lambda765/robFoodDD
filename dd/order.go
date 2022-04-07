@@ -44,7 +44,7 @@ type PaymentOrder struct {
 }
 
 type PackageOrder struct {
-	Packages     []Package    `json:"packages"`
+	Packages     []*Package   `json:"packages"`
 	PaymentOrder PaymentOrder `json:"payment_order"`
 }
 
@@ -177,7 +177,6 @@ func (s *DingdongSession) GeneratePackageOrder() {
 		Products:             products,
 		EtaTraceId:           "",
 		PackageId:            1,
-		SoonArrival:          0,
 		PackageType:          1,
 	}
 	paymentOrder := PaymentOrder{
@@ -194,8 +193,8 @@ func (s *DingdongSession) GeneratePackageOrder() {
 		Price:                s.Order.Price,
 	}
 	packageOrder := PackageOrder{
-		Packages: []Package{
-			p,
+		Packages: []*Package{
+			&p,
 		},
 		PaymentOrder: paymentOrder,
 	}
