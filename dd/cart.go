@@ -67,6 +67,10 @@ func (s *DingdongSession) GetCheckProd(result gjson.Result) error {
 			products = append(products, product)
 		}
 	}
+	s.Cart = Cart{
+		ProdList:        products,
+		ParentOrderSign: result.Get("data.parent_order_info.parent_order_sign").Str,
+	}
 	return nil
 }
 
