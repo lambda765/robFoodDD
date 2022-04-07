@@ -9,7 +9,7 @@ import (
 
 func main() {
 	session := dd.DingdongSession{}
-	err := session.InitSession("DDXQSESSID=xxxxxxxxxxx", "xxxxxxxxxxxxx")
+	err := session.InitSession()
 	if err != nil {
 		fmt.Println(err)
 		return
@@ -70,9 +70,15 @@ cartLoop:
 					err = session.AddNewOrder()
 					switch err {
 					case nil:
-						fmt.Println("抢购成功，请前往app付款！")
+						msg := "抢到菜了，请速去app支付"
+						fmt.Println(msg)
 						for true {
-							err = session.PushSuccess()
+							if session.NoticeMode == 1 {
+								err = session.PushSuccess(msg)
+							} else if session.NoticeMode == 2 {
+								err = dd.WeChatPush(session.WeChatAppId, session.WeChatAppSecret, msg)
+							}
+
 							if err == nil {
 								break
 							} else {

@@ -7,8 +7,8 @@ import (
 	"net/http"
 )
 
-func (s *DingdongSession) PushSuccess() error {
-	urlPath := fmt.Sprintf("https://api.day.app/%s/抢到菜了，请速去支付?sound=alert", s.BarkId)
+func (s *DingdongSession) PushSuccess(msg string) error {
+	urlPath := fmt.Sprintf("https://api.day.app/%s/%s?sound=alert", s.BarkId, msg)
 	req, _ := http.NewRequest("GET", urlPath, nil)
 	resp, err := s.Client.Do(req)
 	if err != nil {
