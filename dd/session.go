@@ -51,7 +51,7 @@ func (s *DingdongSession) InitSession(cookie, barkId string, addressNum, payMeth
 				break
 			}
 		}*/
-	if addressNum < 0 || addressNum > addrLenNum {
+	if addressNum < 0 || addressNum >= addrLenNum {
 		log.Fatalln("请根据地址列表，选择合适的地址索引。")
 	}
 	s.Address = addrList[addressNum]
