@@ -3,6 +3,7 @@ package dd
 import (
 	"errors"
 	"fmt"
+	"log"
 	"net/http"
 )
 
@@ -27,7 +28,9 @@ func (s *DingdongSession) InitSession(cookie, barkId string, addressNum, payMeth
 	if err != nil {
 		return err
 	}
-	if len(addrList) == 0 {
+
+	addrLenNum := len(addrList) // app中获取的地址列表长度
+	if addrLenNum == 0 {
 		return errors.New("未查询到有效收货地址，请前往app添加或检查cookie是否正确！")
 	}
 	//fmt.Println("########## 选择收货地址 ##########")
@@ -48,6 +51,9 @@ func (s *DingdongSession) InitSession(cookie, barkId string, addressNum, payMeth
 				break
 			}
 		}*/
+	if addressNum < 0 || addressNum > addrLenNum {
+		log.Fatalln("请根据地址列表，选择合适的地址索引。")
+	}
 	s.Address = addrList[addressNum]
 	fmt.Printf("已选配送地址：%v\n", s.Address)
 	//fmt.Println("########## 选择支付方式 ##########")

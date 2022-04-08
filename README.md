@@ -12,9 +12,9 @@
 ```
 users:
   - userName: xxx # 用户名
-    cookie: xxx # cookie 获取方式参考下文<实践证明叮咚会在每天6点前刷新cookie，需要重新抓包>
+    cookie: DDXQSESSID=xxx # cookie 获取方式参考下文<实践证明叮咚会在每天6点前刷新cookie，需要重新抓包>
     barkId: xxx # barkid 获取方式参考下文
-    addressNum: 0 # 此处建议选择自己常用地址
+    addressNum: 0 # 此处建议选择自己常用地址<添加新地址后，请更新此地址索引号>
     payMethodNum: 2 # 支付方式序号（1：支付宝 2：微信<default>)
     settlementMode: 1 # 结算模式序号（1：结算所有有效商品（不包括换购）<default> 2：结算所有勾选商品（包括换购)
 
