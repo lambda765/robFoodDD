@@ -10,6 +10,7 @@
 ## 使用方式
 在配置文件中添加以下信息：
 ```
+# 多账号情况下，请保证账号在不同设备的登录状态
 users:
   - userName: xxx # 用户名
     cookie: DDXQSESSID=XXXXXXX # cookie 获取方式参考下文

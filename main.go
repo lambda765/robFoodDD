@@ -18,19 +18,15 @@ func main() {
 
 	for _, user := range dd.GetConfigX().Users {
 		wg.Add(1)
-		go func() {
-			robFood(user)
-			wg.Done()
-		}()
+		time.Sleep(10) //间隔账号之间的登录时间，同时运行会报鉴权异常
+		go robFood(user, &wg)
 	}
-
 	wg.Wait()
 
 }
 
 //robDood: cookie 用户信息 action: 操作动作
-func robFood(user dd.UserModel) {
-
+func robFood(user dd.UserModel, wg *sync.WaitGroup) {
 	session := dd.DingdongSession{}
 	err := session.InitSession(user.Cookie, user.BarkId, user.AddressNum, user.PayMethodNum, user.SettlementMode)
 	if err != nil {
@@ -103,6 +99,7 @@ cartLoop:
 							}
 							time.Sleep(1 * time.Second)
 						}
+						wg.Done()
 						return
 					case dd.TimeExpireErr:
 						fmt.Printf("[%s] %s\n", reserveTime.SelectMsg, err)
