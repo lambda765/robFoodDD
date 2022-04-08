@@ -8,9 +8,16 @@
 目前邮费数据默认为免邮，若已用过首单优惠请保持订单总额超过免邮门槛，否则无法正常下单！
 
 ## 使用方式
-在main.go的main函数中修改该行代码
+在配置文件中添加以下信息：
 ```
-err := session.InitSession("DDXQSESSID=xxxxxxxxxxx", "xxxxxxxxxxxxx")
+users:
+  - userName: xxx # 用户名
+    cookie: xxx # cookie 获取方式参考下文<实践证明叮咚会在每天6点前刷新cookie，需要重新抓包>
+    barkId: xxx # barkid 获取方式参考下文
+    addressNum: 0 # 此处建议选择自己常用地址
+    payMethodNum: 2 # 支付方式序号（1：支付宝 2：微信<default>)
+    settlementMode: 1 # 结算模式序号（1：结算所有有效商品（不包括换购）<default> 2：结算所有勾选商品（包括换购)
+
 ```
 其中第一个参数为叮咚登录cookie，需要抓包获取，形式为```"DDXQSESSID=xxxxxxxxxxx""```
 
@@ -18,7 +25,14 @@ err := session.InitSession("DDXQSESSID=xxxxxxxxxxx", "xxxxxxxxxxxxx")
 
 <img src="./assets/bark.jpg" width="300">
 
-开始运行后按命令行提示操作即可。
+```bigquery
+# crontab mode
+
+58 5 * * * cd /opt/project/robfood && ./robfooddd >> /tmp/robfooddd.log 2>&1
+27 8 * * * cd /opt/project/robfood && ./robfooddd >> /tmp/robfooddd.log 2>&1
+
+
+```
 
 ## 声明
 本项目仅供学习交流，严禁用作商业行为，特别禁止黄牛加价代抢等！

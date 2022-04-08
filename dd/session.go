@@ -49,7 +49,7 @@ func (s *DingdongSession) InitSession(cookie, barkId string, addressNum, payMeth
 			}
 		}*/
 	s.Address = addrList[addressNum]
-	fmt.Printf("已配送地址：%v\n", s.Address)
+	fmt.Printf("已选配送地址：%v\n", s.Address)
 	//fmt.Println("########## 选择支付方式 ##########")
 
 	switch payMethod {
