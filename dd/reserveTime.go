@@ -17,7 +17,7 @@ type ReserveTime struct {
 	SelectMsg      string `json:"select_msg"`
 }
 
-func (s *DingdongSession) GetMultiReserveTime() (error, []ReserveTime) {
+func (s *DingdongSession) GetMultiReserveTime(ddmcUid string) (error, []ReserveTime) {
 	urlPath := "https://maicai.api.ddxq.mobi/order/getMultiReserveTime"
 	var products []map[string]interface{}
 	for _, product := range s.Order.Products {
@@ -71,6 +71,7 @@ func (s *DingdongSession) GetMultiReserveTime() (error, []ReserveTime) {
 	req.Header.Set("sec-fetch-dest", "empty")
 	req.Header.Set("referer", "https://wx.m.ddxq.mobi/")
 	req.Header.Set("accept-language", "zh-CN,zh;q=0.9,en-US;q=0.8,en;q=0.7")
+	req.Header.Set("ddmc-uid", ddmcUid)
 	req.Header.Set("cookie", s.Cookie)
 	resp, err := s.Client.Do(req)
 	if err != nil {
@@ -98,4 +99,5 @@ func (s *DingdongSession) GetMultiReserveTime() (error, []ReserveTime) {
 	} else {
 		return errors.New(fmt.Sprintf("[%v] %s", resp.StatusCode, body)), nil
 	}
+
 }

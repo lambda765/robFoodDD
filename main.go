@@ -18,7 +18,7 @@ func main() {
 
 	for _, user := range dd.GetConfigX().Users {
 		wg.Add(1)
-		time.Sleep(10) //间隔账号之间的登录时间，同时运行会报鉴权异常
+		time.Sleep(5) //间隔账号之间的登录时间，同时运行会报鉴权异常
 		go robFood(user, &wg)
 	}
 	wg.Wait()
@@ -68,7 +68,7 @@ cartLoop:
 		session.GeneratePackageOrder()
 		for i := 0; i < 60; i++ {
 			fmt.Printf("%s  ==> ########## 获取可预约时间【%s】 ###########\n", user.UserName, time.Now().Format("15:04:05"))
-			err, multiReserveTime := session.GetMultiReserveTime()
+			err, multiReserveTime := session.GetMultiReserveTime(user.DdmcUid)
 			if err != nil {
 				fmt.Println(err)
 				continue

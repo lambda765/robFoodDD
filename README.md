@@ -15,11 +15,15 @@ users:
   - userName: xxx # 用户名
     cookie: DDXQSESSID=XXXXXXX # cookie 获取方式参考下文
     barkId: xxx # barkid 获取方式参考下文
+    ddmcUid: xxx # ddmc-uid 获取方式参考下文
     addressNum: 0 # 此处建议选择自己常用地址<添加新地址后，请更新此地址索引号，默认最近新加地址>
     payMethodNum: 2 # 支付方式序号[1：支付宝 2：微信<default>)]
     settlementMode: 1 # 结算模式序号 [1：结算所有有效商品（不包括换购）<default> 2：结算所有勾选商品（包括换购)]
 ```
-其中第一个参数为叮咚登录cookie，需要抓包获取，形式为```"DDXQSESSID=xxxxxxxxxxx""```
+其中第一个参数为叮咚登录cookie，需要抓包获取，形式为```"DDXQSESSID=xxxxxxxxxxx""```<br>
+ddmcUid与抓取cookie方法一致，在header中搜索 ddmc-uid复制其value 填入配置文件之中。
+ddmc-uid 经检查历史抓包记录，发现是今下午新增验证方式，获取接口为```https://pilot.ddxq.mobi/v1/ios/invite?uid=xxx&type=1&version=1159&isbeta=0```
+暂时未发现其生成规律，直接使用暂未出现异常。
 
 第二个参数为通知用的bark id，下载bark后从app界面获取
 

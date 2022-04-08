@@ -1,6 +1,7 @@
 users:
   - userName: xxx # 用户名
     cookie: DDXQSESSID=XXXXXXX # cookie 获取方式参考下文
+    ddmcUid: xxx # ddmc-uid
     barkId: xxx # barkid 获取方式参考下文
     addressNum: 0 # 此处建议选择自己常用地址<添加新地址后，请更新此地址索引号>
     payMethodNum: 2 # 支付方式序号[1：支付宝 2：微信<default>)]

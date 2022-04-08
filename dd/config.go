@@ -15,6 +15,7 @@ type ConfigModel struct {
 type UserModel struct {
 	UserName       string `yaml:"userName""`
 	Cookie         string `yaml:"cookie"`
+	DdmcUid        string `yaml:"ddmcUid"`
 	BarkId         string `yaml:"barkId"`
 	AddressNum     int    `yaml:"addressNum"`
 	PayMethodNum   int    `yaml:"payMethodNum"`
